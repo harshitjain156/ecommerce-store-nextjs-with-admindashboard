@@ -41,7 +41,7 @@ const Navbar = () => {
         >
           Home
         </Link>
-        <Link
+        {/* <Link
           href={user ? "/wishlist" : "/sign-in"}
           className={`hover:text-red-1 ${
             pathname === "/wishlist" && "text-red-1"
@@ -56,7 +56,7 @@ const Navbar = () => {
           }`}
         >
           Orders
-        </Link>
+        </Link> */}
       </div>
 
       <div className="flex gap-3 border border-grey-2 px-3 py-1 items-center rounded-lg">
