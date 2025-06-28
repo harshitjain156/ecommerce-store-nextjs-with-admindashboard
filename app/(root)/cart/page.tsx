@@ -25,21 +25,56 @@ const Cart = () => {
 
   const handleCheckout = async () => {
     try {
-      if (!user) {
-        router.push("sign-in");
-      } else {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/checkout`, {
-          method: "POST",
-          body: JSON.stringify({ cartItems: cart.cartItems, customer }),
-        });
-        const data = await res.json();
-        window.location.href = data.url;
-        console.log(data);
-      }
+      const url = "https://wa.me/919456603343?text=This is testing"
+      window.open(url,'_blank')
+      // if (!user) {
+      //   router.push("sign-in");
+      // } else {
+      //   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/checkout`, {
+      //     method: "POST",
+      //     body: JSON.stringify({ cartItems: cart.cartItems, customer }),
+      //   });
+      //   const data = await res.json();
+      //   window.location.href = data.url;
+      //   console.log(data);
+      // }
     } catch (err) {
       console.log("[checkout_POST]", err);
     }
-  };
+  }; // adjust path as needed
+
+ const sendCartToWhatsApp = () => {
+  const { cartItems } = useCart.getState();
+
+  if (cartItems.length === 0) {
+    alert("Cart is empty!");
+    return;
+  }
+
+  const message = cartItems
+    .map((cartItem, index) => {
+      const { item, quantity, color, size } = cartItem;
+      return `${index + 1}. ${item.title}\nId: ${item._id}\nQty: ${quantity}${
+        color ? `\nColor: ${color}` : ""
+      }${size ? `\nSize: ${size}` : ""}\nPrice: ₹${item.price}\n`;
+    })
+    .join("\n------------------\n");
+
+  const total = cartItems.reduce(
+    (acc, cartItem) => acc + cartItem.item.price * cartItem.quantity,
+    0
+  );
+const phoneNumber='919456603343'
+  const fullMessage = `🛍️ *New Order Request*\n\n${message}\n====================\n*Total: ₹${total}*\n\nPlease confirm the order.`;
+
+  const encodedMessage = encodeURIComponent(fullMessage);
+
+  // phoneNumber should be in international format, e.g. '919876543210'
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+  window.open(whatsappUrl, "_blank");
+};
+
 
   return (
     <div className="flex gap-20 py-16 px-10 max-lg:flex-col">
@@ -112,9 +147,9 @@ const Cart = () => {
 
         <button
           className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-          onClick={handleCheckout}
+          onClick={sendCartToWhatsApp}
         >
-          Proceed to Checkout
+          Proceed to Order
         </button>
       </div>
     </div>
