@@ -54,9 +54,10 @@ const Cart = () => {
   const message = cartItems
     .map((cartItem, index) => {
       const { item, quantity, color, size } = cartItem;
-      return `${index + 1}. ${item.title}\nId: ${item._id}\nQty: ${quantity}${
-        color ? `\nColor: ${color}` : ""
-      }${size ? `\nSize: ${size}` : ""}\nPrice: ₹${item.price}\n`;
+      return `${index + 1}. ${item.title}\nId: ${item._id} ${item.media}\nQty: ${quantity}${
+        color ? `\nColor: ${color}` : ""}
+        ${item.media[0] ? `\n Image: ${item.media[0]}` : ""}\n
+      ${size ? `\nSize: ${size}` : ""}\nPrice: ₹${item.price}\n`;
     })
     .join("\n------------------\n");
 
@@ -64,7 +65,7 @@ const Cart = () => {
     (acc, cartItem) => acc + cartItem.item.price * cartItem.quantity,
     0
   );
-const phoneNumber='919456603343'
+const phoneNumber=`${process.env.CONTACT_NUMBER}`
   const fullMessage = `🛍️ *New Order Request*\n\n${message}\n====================\n*Total: ₹${total}*\n\nPlease confirm the order.`;
 
   const encodedMessage = encodeURIComponent(fullMessage);
