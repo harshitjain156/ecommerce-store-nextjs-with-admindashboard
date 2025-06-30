@@ -30,9 +30,9 @@ const Navbar = () => {
 
   return (
     <div className="sticky top-0 z-10 py-2 px-10 flex gap-2 justify-between items-center bg-white  max-sm:px-2 dark:bg-black">
-      <Link href="/">
+      {/* <Link href="/">
         <Image src="/logo2.png" alt="logo" width={130} height={100} />
-      </Link>
+      </Link> */}
 
       <div className="flex gap-4 text-base-bold max-lg:hidden">
         <Link
@@ -66,7 +66,7 @@ const Navbar = () => {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <button
+        <button 
           disabled={query === ""}
           onClick={() => router.push(`/search/${query}`)}
         >
@@ -77,13 +77,13 @@ const Navbar = () => {
       <div className="relative flex gap-3 items-center">
         <Link
           href="/cart"
-          className="flex items-center gap-3 border rounded-lg px-2 py-1 hover:bg-black hover:text-white max-md:hidden dark:hover:bg-white dark:hover:text-black"
+          className="flex items-center gap-3 border rounded-lg px-2 py-1 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
         >
           <ShoppingCart />
           <p className="text-base-bold">Cart ({cart.cartItems.length})</p>
         </Link>
 
-        <Menu
+        {/* <Menu
           className="cursor-pointer lg:hidden"
           onClick={() => setDropdownMenu(!dropdownMenu)}
         />
@@ -113,15 +113,15 @@ const Navbar = () => {
               <p className="text-base-bold">({cart.cartItems.length})</p>
             </Link>
           </div>
-        )}
-        <Moon onClick={toggleTheme} className="cursor-pointer" />
+        )} */}
+        {/* <Moon onClick={toggleTheme} className="cursor-pointer" />
         {user ? (
           <UserButton afterSignOutUrl="/sign-in" />
         ) : (
           <Link href="/sign-in">
             <CircleUserRound />
           </Link>
-        )}
+        )} */}
       </div>
     </div>
   );
