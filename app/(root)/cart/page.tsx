@@ -54,9 +54,8 @@ const Cart = () => {
   const message = cartItems
     .map((cartItem, index) => {
       const { item, quantity, color, size } = cartItem;
-      return `${index + 1}. ${item.title}\nId: ${item._id} ${item.media}\nQty: ${quantity}${
-        color ? `\nColor: ${color}` : ""}
-        ${item.media[0] ? `\n Image: ${item.media[0]}` : ""}\n
+      return `${index + 1}. ${item.title} \nQty: ${quantity}${
+        color ? `\nColor: ${color}` : ""}\n
       ${size ? `\nSize: ${size}` : ""}\nPrice: ₹${item.price}\n`;
     })
     .join("\n------------------\n");
