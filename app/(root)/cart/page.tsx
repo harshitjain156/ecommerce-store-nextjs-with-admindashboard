@@ -55,7 +55,7 @@ const Cart = () => {
     .map((cartItem, index) => {
       const { item, quantity, color, size } = cartItem;
       return `${index + 1}. ${item.title} \nQty: ${quantity}${
-        color ? `\nColor: ${color}` : ""}\n
+        color ? `\nColor: ${color}` : ""}
       ${size ? `\nSize: ${size}` : ""}\nPrice: ₹${item.price}\n`;
     })
     .join("\n------------------\n");
@@ -65,7 +65,7 @@ const Cart = () => {
     0
   );
 const phoneNumber=`${process.env.NEXT_PUBLIC_CONTACT_NUMBER}`
-  const fullMessage = `🛍️ *New Order Request*\n\n${message}\n====================\n*Total: ₹${total}*\n\nPlease confirm the order.`;
+  const fullMessage = `New Order Request\n\n${message}\n====================\n*Total: ₹${total}*\n\nPlease confirm the order.`;
 
   const encodedMessage = encodeURIComponent(fullMessage);
 
