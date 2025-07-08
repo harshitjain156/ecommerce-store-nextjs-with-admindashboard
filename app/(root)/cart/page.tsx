@@ -65,7 +65,7 @@ const Cart = () => {
     (acc, cartItem) => acc + cartItem.item.price * cartItem.quantity,
     0
   );
-const phoneNumber=`${process.env.CONTACT_NUMBER}`
+const phoneNumber=`${process.env.NEXT_PUBLIC_CONTACT_NUMBER}`
   const fullMessage = `🛍️ *New Order Request*\n\n${message}\n====================\n*Total: ₹${total}*\n\nPlease confirm the order.`;
 
   const encodedMessage = encodeURIComponent(fullMessage);
